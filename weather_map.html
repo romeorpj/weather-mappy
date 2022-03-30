@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--    ADD FAVICON-->
+    <title>Weather Map</title>
+    <link rel="stylesheet" href="/css/weather-map.css">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet'/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+          integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+</head>
+
+<!--        TODO: START BODY-->
+<body>
+<header>
+    <div class="container">
+        <h1>WeatherMappy</h1>
+        <div class="header__user-input-wrapper flex-row">
+<!--flex this out in case I want to add more elements-->
+            <div class="user-input-wrapper-elements ">
+                <input type="search" name="input1" id="input1" placeholder="Enter Location">
+                <button type="submit" class="header-btn1"><i class="fa-solid fa-angle-right"></i></button>
+            </div>
+            <div class="custom-select">
+                <select name="" id="map-selector">
+                    <option value="mapbox://styles/mapbox/streets-v11">Streets Map</option>
+                    <option value="mapbox://styles/mapbox/outdoors-v11">Outdoors Map</option>
+                    <option value="mapbox://styles/mapbox/light-v10">Light Map</option>
+                    <option value="mapbox://styles/mapbox/dark-v10">Dark Map</option>
+                    <option value="mapbox://styles/mapbox/satellite-v9">Satellite Map</option>
+                    <option value="mapbox://styles/mapbox/satellite-streets-v11">Satellite + Streets Map</option>
+                    <option value="mapbox://styles/mapbox/navigation-day-v1">Navigation Day Map</option>
+                    <option value="mapbox://styles/mapbox/navigation-night-v1">Navigation Night Map</option>
+                </select>
+                <span class="custom-arrow"></span>
+            </div>
+        </div>
+        <!--        TODO: BEGIN FORECAST SECTION-->
+        <section class="forecast-scroller  snap-scroll">
+        </section>
+<!--        <div class="hide-forecast-btn"></div>-->
+    </div>
+    <!-- END CONTAINER DIV-->
+</header>
+
+<!--        TODO: MAPBOX -->
+<div id='map'></div>
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
+<script src="/js/keys.js"></script>
+<script src="/js/weather-map.js"></script>
+<script src="/js/mapbox-geocoder-utils.js"></script>
+<script src="/js/mapbox-weather.js"></script>
+
+</body>
+</html>

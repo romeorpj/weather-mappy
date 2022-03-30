@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+
+/* Box sizing rules and reset*/
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+/* Set core root defaults */
+html:focus-within {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+html {
+    font-family: 'Rubik', sans-serif;
+    font-size: 10px;
+    box-sizing: border-box;
+}
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    overflow: hidden;
+}
+P, li {
+    font-size: 1.8rem;
+}
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font-family: 'Rubik', sans-serif;
+}
+
+.flex-row{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex-col{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* ########## END GLOBAL ########## */
+
+:root{
+    --black:#202124;
+    --gray:#848487;
+    --radius: 8px;
+    --font-size: 1.55rem;
+--input-height:45px;
+    --btns-blk:#3b3c47;
+}
+
+header{
+    width: 100%;
+    height: 30vh;
+    /*background: url("/img/weather-bg.jpeg");*/
+    /*background: darkcyan;*/
+    /*background-image: linear-gradient(to right, #141e30, #243b55);*/
+    background-image: linear-gradient(to right, darkcyan, #027373);
+}
+
+.container{
+    width: 80%;
+    /*max-width: 8000px;*/
+/*    not gonna worry about height*/
+    margin: 0 auto;
+    /*border: 1px solid purple;*/
+    /*position*/
+}
+
+h1{
+    color: white;
+    text-align: center;
+    padding: 15px 0 10px 0;
+}
+.header__user-input-wrapper{
+    width: 100%;
+justify-content: space-around;
+
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 800px;
+    margin: 10px auto 30px auto;
+}
+.header__user-input-wrapper >*{
+    flex: 1 1 250px;
+
+}
+
+/***HANDLES INPUT AND BUTTON***/
+.user-input-wrapper-elements{
+    position: relative;
+
+}
+#input1{
+    width: 100%;
+
+    height: var(--input-height);
+    border-radius: var(--radius);
+    padding: 20px;
+    color: var(--black);
+    font-size: 1.7rem;
+    /*font-weight: 300;*/
+    border: none;
+outline: none;
+}
+
+.custom-select{
+    /*display: inline-block;*/
+    position: relative;
+    outline: none;
+}
+.custom-arrow{
+    display: block;
+    background: #3b3c47;
+    height: 100%;
+    width: 4rem;
+    border-bottom-right-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+    position: absolute;
+    top: 0;
+    right: 0;
+pointer-events: none;
+}
+.custom-arrow::before,.custom-arrow::after{
+    --triangle-size: 0.65rem;
+    content:"";
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.custom-arrow::before{
+    border-left:var(--triangle-size) solid transparent ;
+    border-right:var(--triangle-size) solid transparent  ;
+    border-bottom:var(--triangle-size) solid rgba(255, 255, 255, .5) ;
+    top: 40%;
+}
+.custom-arrow::after{
+    border-left:var(--triangle-size) solid transparent ;
+    border-right:var(--triangle-size) solid transparent  ;
+    border-top:var(--triangle-size) solid rgba(255, 255, 255, .5)  ;
+top: 60%;
+}
+
+#map-selector{
+   font-size: 1.7rem;
+    padding: .6em 2.5em .6em 1em;
+    border-radius: var(--radius);
+    background: #4d5061;
+    color: white;
+    width: 100%;
+    height: var(--input-height);
+}
+.header-btn1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--btns-blk);
+    color: rgba(255, 255, 255, .5);
+    height: 100%;
+    width: 4rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-bottom-right-radius:var(--radius) ;
+    border-top-right-radius:var(--radius) ;
+}
+.header-btn1:active{
+    /*transform: translateX(3px);*/
+    transform: translateX(2px);
+    background: #4d5061;
+}
+/***HANDLES FORECAST-WRAPPER***/
+
+
+.owm-icon{
+    width: 45%;
+}
+.snap-scroll{
+    /*stop scroll from resting in the middle of elm*/
+    scroll-snap-type: inline mandatory;
+    scroll-padding-inline: 1rem;
+}
+.snap-scroll > *{
+    scroll-snap-align: start;
+    box-shadow:
+            0 3.9px 4.6px rgba(0, 0, 0, 0.08),
+            0 12.3px 8.4px rgba(0, 0, 0, 0.056),
+            0 18.8px 19.2px rgba(0, 0, 0, 0.037),
+            0 22px 40px rgba(0, 0, 0, 0.019);
+    /*max-width: 200px;*/
+    transition: all 450ms ease-in-out;
+}
+
+.forecast-scroller{
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 80%;
+    gap: 24px;
+    overflow-x: auto;
+    overscroll-behavior: contain;
+    padding-bottom: 30px;
+    /*border: 1px solid purple;*/
+    z-index: 15;
+    position: relative;
+    opacity: 1;
+    transition: all 750ms ease-in-out;
+}
+
+.forecast-scroller.active{
+    transform: translateX(105%);
+    opacity: .5;
+}
+.hide-forecast-btn{
+    width: 50px;
+    height: 50px;
+    background: red;
+    position: absolute;
+    z-index: 99;
+    top: 50%;
+    left: -25px;
+    transform: translateY(-50%);
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.fa-caret-left{
+    color: white;
+font-size: 2rem;
+margin: 35px;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+.forecast{
+    background: white;
+    max-width:330px;
+    color:var(--black);
+    border-radius: var(--radius);
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /*width: 100%;*/
+}
+.forecast > *{
+    /*border-bottom: 1px solid #ececec;*/
+    padding:5px;
+}
+.forecast > *:nth-child(even){
+background: rgba(236, 240, 241, 0.53);
+}
+
+.forecast-lo{
+    margin-right: 12px;
+}
+
+.forecast-hilo p{
+    font-weight: 500;
+    color: var(--black);
+    font-size: var(--font-size);
+}
+.hilo-temp{
+    /*color: var(--gray);*/
+    font-weight: 300;
+    font-size: 1.8rem;
+}
+.date-container p{
+    font-weight: 300;
+    font-size: var(--font-size);
+}
+.date-container .forecast-day{
+    font-weight: 500;
+    color: var(--black);
+    margin-left: 10px;
+}
+
+.description-title, .humidity-title,.wind-speed-title{
+    font-size: var(--font-size);
+    font-weight: 500;
+    color: var(--black);
+    letter-spacing: 0.09rem;
+    margin-right: 5px;
+}
+.description-output, .humidity-output, .wind-speed-output,.forecast-hilo,.date-container{
+    font-weight: 300;
+    color: var(--black);
+
+    /*justify-content: space-around;*/
+}
+.description-wrapper, .humidity-wrapper, .wind-speed-wrapper,.forecast-hilo{
+    justify-content: space-evenly;
+    width: 100%;
+}
+/*  */
+
+
+/*TODO: MAPBOX*/
+#map {
+    /* the width and height may be set to any size */
+    width: 100%;
+    height: 70vh;
+    z-index: 11;
+}
+h2{
+    font-size: 1.3rem;
+    letter-spacing: 01px;
+}
+
+
+
+
+@media screen and (min-width: 550px) {
+    .forecast-scroller{
+        width: 100%;
+        grid-auto-columns: 330px;
+        gap: 24px;
+
+    }
+}
